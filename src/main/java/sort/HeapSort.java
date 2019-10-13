@@ -10,10 +10,10 @@ public class HeapSort implements Sort {
     @Override
     public void sort(int[] values) {
 
+        buildHeap(values);
         int length = values.length;
-        while (length >= 2) {
 
-            buildHeapTree(values, length);
+        while (length >= 2) {
 
             int tmp = values[length - 1];
             values[length - 1] = values[0];
@@ -21,13 +21,14 @@ public class HeapSort implements Sort {
 
             length--;
 
+            keepHeapify(values, length, 0);
         }
     }
 
 
-    private void buildHeapTree(int[] values, int length) {
-        for (int i = (length - 2) / 2; i >= 0; i--) {
-            keepHeapify(values, length, i);
+    private void buildHeap(int[] values) {
+        for (int i = (values.length - 2) / 2; i >= 0; i--) {
+            keepHeapify(values, values.length, i);
         }
     }
 

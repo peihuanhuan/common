@@ -4,8 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 
@@ -15,7 +13,7 @@ public class SortTest {
     public void sort() {
         Random random = new Random();
 
-        int size = random.nextInt(1000000);
+        int size = random.nextInt(1000000) + random.nextInt(1000000);
         int[] values = new int[size];
         for (int i = 0; i < size; i++) {
             values[i] = random.nextInt();
@@ -24,6 +22,7 @@ public class SortTest {
 
         System.out.println("/***********************************************************/\n");
 
+        runAndTiming(new QuickSort(), values);
         runAndTiming(new HeapSort(), values);
         runAndTiming(new MergeSort(), values);
         runAndTiming(new InsertionSort(), values);

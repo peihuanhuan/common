@@ -13,15 +13,17 @@ public class SortTest {
     public void sort() {
         Random random = new Random();
 
-        int size = random.nextInt(1000000) + random.nextInt(1000000);
+        int size = random.nextInt(500000) + 1;
         int[] values = new int[size];
         for (int i = 0; i < size; i++) {
-            values[i] = random.nextInt();
+            values[i] = random.nextInt(size);
         }
 
 
         System.out.println("/***********************************************************/\n");
 
+        runAndTiming(new RadixSort(), values);
+        runAndTiming(new CountingSort(), values);
         runAndTiming(new QuickSort(), values);
         runAndTiming(new HeapSort(), values);
         runAndTiming(new MergeSort(), values);
@@ -45,8 +47,8 @@ public class SortTest {
     }
 
     private boolean testCorrectness(int[] values) {
-        for (int i = 0;i < values.length - 1; i++){
-            if (values[i] > values[i+1]) {
+        for (int i = 0; i < values.length - 1; i++) {
+            if (values[i] > values[i + 1]) {
                 return false;
             }
         }

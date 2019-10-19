@@ -15,7 +15,7 @@ public class MergeSort implements Sort{
     }
 
     private void mergeSort(int[] values, int start, int end) {
-        if (start == end) {
+        if (start >= end) {
             return;
         }
         int middle = (start + end) / 2;

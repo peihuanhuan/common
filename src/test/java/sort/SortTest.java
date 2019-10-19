@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 
@@ -13,32 +15,50 @@ public class SortTest {
     public void sort() {
         Random random = new Random();
 
-        int size = random.nextInt(500000) + 1;
+        int size = random.nextInt(5000000) + 1;
         int[] values = new int[size];
+        Map<Integer, Integer> originValueCount = new HashMap<>();
         for (int i = 0; i < size; i++) {
             values[i] = random.nextInt(size);
+            originValueCount.compute(values[i], (k, v) -> (v == null) ? 1 : v + 1);
         }
 
 
         System.out.println("/***********************************************************/\n");
 
-        runAndTiming(new RadixSort(), values);
-        runAndTiming(new CountingSort(), values);
-        runAndTiming(new QuickSort(), values);
-        runAndTiming(new HeapSort(), values);
-        runAndTiming(new MergeSort(), values);
-        runAndTiming(new InsertionSort(), values);
+        runAndcheck(new RadixSort(), values, originValueCount);
+
+        runAndcheck(new CountingSort(), values, originValueCount);
+
+        runAndcheck(new QuickSort(), values, originValueCount);
+
+        runAndcheck(new HeapSort(), values, originValueCount);
+
+        runAndcheck(new MergeSort(), values, originValueCount);
+
+        runAndcheck(new InsertionSort(), values, originValueCount);
 
         System.out.println("\n/***********************************************************/");
 
 
     }
 
-    private void runAndTiming(Sort sort, int[] values) {
-        int[] copiedValues = Arrays.copyOfRange(values, 0, values.length - 1);
+    private void runAndcheck(Sort sort, int[] values, Map<Integer, Integer> originValueCount) {
+        int[] copiedValues = Arrays.copyOfRange(values, 0, values.length);
         long start = System.currentTimeMillis();
         sort.sort(copiedValues);
         long end = System.currentTimeMillis();
+
+        Map<Integer, Integer> sortedValuesCount = new HashMap<>();
+        for (int value : copiedValues) {
+            sortedValuesCount.compute(value, (k, v) -> (v == null) ? 1 : v + 1);
+        }
+
+        originValueCount.forEach((k,v) -> {
+            if (!v.equals(sortedValuesCount.get(k))) {
+                throw new RuntimeException("元素不匹配");
+            }
+        });
 
         Assert.assertTrue(testCorrectness(copiedValues));
 

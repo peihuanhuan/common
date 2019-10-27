@@ -2,7 +2,7 @@ package sort;
 
 import java.util.Arrays;
 
-public class MergeSort implements Sort{
+public class MergeSort<T extends Comparable<T>> implements Sort<T> {
 
     @Override
     public String name() {
@@ -10,29 +10,30 @@ public class MergeSort implements Sort{
     }
 
     @Override
-    public void sort(int[] values) {
+    public void sort(Object[] values) {
         mergeSort(values, 0, values.length - 1);
     }
 
-    private void mergeSort(int[] values, int start, int end) {
+    private void mergeSort(Object[] values, int start, int end) {
         if (start >= end) {
             return;
         }
-        int middle = (start + end) / 2;
+        int middle = (start + end) >> 1;
         mergeSort(values, start, middle);
         mergeSort(values, middle + 1, end);
         merge(values, start, middle, end);
     }
 
-    private void merge(int[] values, int start, int middle, int end) {
-        int[] left = Arrays.copyOfRange(values, start, middle + 1);
-        int[] right = Arrays.copyOfRange(values, middle + 1, end + 1);
+    @SuppressWarnings("unchecked")
+    void merge(Object[] values, int start, int middle, int end) {
+        Object[] left = Arrays.copyOfRange(values, start, middle + 1);
+        Object[] right = Arrays.copyOfRange(values, middle + 1, end + 1);
 
         int l = 0;
         int r = 0;
-        int s =start;
+        int s = start;
         while (l < left.length && r < right.length) {
-            if (left[l] >= right[r]) {
+            if (((Comparable) left[l]).compareTo(right[r]) >= 0) {
                 values[s++] = right[r++];
             } else {
                 values[s++] = left[l++];
@@ -40,7 +41,7 @@ public class MergeSort implements Sort{
         }
         if (l < left.length) {
             System.arraycopy(left, l, values, s, left.length - l);
-        } else if (r < right.length){
+        } else if (r < right.length) {
             System.arraycopy(right, r, values, s, right.length - r);
         }
     }

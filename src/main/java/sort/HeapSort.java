@@ -1,6 +1,8 @@
 package sort;
 
-public class HeapSort implements Sort {
+import static sort.Common.exchangeValue;
+
+public class HeapSort<T extends Comparable<T>> implements Sort<T> {
 
     @Override
     public String name() {
@@ -8,17 +10,12 @@ public class HeapSort implements Sort {
     }
 
     @Override
-    public void sort(int[] values) {
-
+    public void sort(Object[] values) {
         buildHeap(values);
         int length = values.length;
 
         while (length >= 2) {
-
-            int tmp = values[length - 1];
-            values[length - 1] = values[0];
-            values[0] = tmp;
-
+            exchangeValue(values, length - 1, 0);
             length--;
 
             keepHeapify(values, length, 0);
@@ -26,31 +23,28 @@ public class HeapSort implements Sort {
     }
 
 
-    private void buildHeap(int[] values) {
-        for (int i = (values.length - 2) / 2; i >= 0; i--) {
+    private void buildHeap(Object[] values) {
+        for (int i = (values.length - 2) >> 1; i >= 0; i--) {
             keepHeapify(values, values.length, i);
         }
     }
 
-    private void keepHeapify(int[] values, int length, int index) {
+    @SuppressWarnings("unchecked")
+    private void keepHeapify(Object[] values, int length, int index) {
         int leftIndex = (index << 1) + 1;
         int rightIndex = (index << 1) + 2;
         int maxValueIndex = index;
 
-        if (leftIndex < length && values[leftIndex] > values[maxValueIndex]) {
+        if (leftIndex < length && ((Comparable)values[leftIndex]).compareTo(values[maxValueIndex]) > 0) {
             maxValueIndex = leftIndex;
         }
 
-        if (rightIndex < length && values[rightIndex] > values[maxValueIndex]) {
+        if (rightIndex < length && ((Comparable)values[rightIndex]).compareTo(values[maxValueIndex]) > 0) {
             maxValueIndex = rightIndex;
         }
 
         if (maxValueIndex != index) {
-
-            int tmp = values[index];
-            values[index] = values[maxValueIndex];
-            values[maxValueIndex] = tmp;
-
+            exchangeValue(values, index, maxValueIndex);
             keepHeapify(values, length, maxValueIndex);
         }
     }

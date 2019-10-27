@@ -1,6 +1,7 @@
 package sort;
 
-public class RadixSort implements Sort {
+public class RadixSort implements SimpleSort{
+
     @Override
     public String name() {
         return "基数排序";

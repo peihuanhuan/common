@@ -1,17 +1,19 @@
 package sort;
 
-public class QuickSort implements Sort {
+import static sort.Common.exchangeValue;
+
+public class QuickSort<T extends Comparable<T>> implements Sort<T> {
     @Override
     public String name() {
         return "快速排序";
     }
 
     @Override
-    public void sort(int[] values) {
+    public void sort(Object[] values) {
         quickSort(values, 0 , values.length - 1);
     }
 
-    private void quickSort(int[] values, int start, int end) {
+    private void quickSort(Object[] values, int start, int end) {
         if (start < end) {
             int core = partition(values, start, end);
             quickSort(values, start, core - 1);
@@ -19,17 +21,15 @@ public class QuickSort implements Sort {
         }
     }
 
-    private int partition(int[] values, int start, int end) {
-        int privot = values[end];
+    @SuppressWarnings("unchecked")
+    private int partition(Object[] values, int start, int end) {
+        // 主元、基准
+        Comparable privot = (Comparable) values[end];
         int i = start;
         for (int j = start; j < end; j++) {
 
-            if (values[j] < privot) {
-
-                int tmp = values[i];
-                values[i] = values[j];
-                values[j] = tmp;
-
+            if (((Comparable)values[j]).compareTo(privot) < 0) {
+                exchangeValue(values, i, j);
                 i++;
             }
         }

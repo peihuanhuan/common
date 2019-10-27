@@ -1,6 +1,6 @@
 package sort;
 
-public class InsertionSort implements Sort {
+public class InsertionSort<T extends Comparable<T>> implements Sort<T> {
 
     @Override
     public String name() {
@@ -8,11 +8,17 @@ public class InsertionSort implements Sort {
     }
 
     @Override
-    public void sort(int[] values) {
-        for (int i = 1; i < values.length; i++) {
+    public void sort(Object[] values) {
+        insertSort(values, 0, values.length - 1);
+    }
+
+
+    @SuppressWarnings("unchecked")
+    void insertSort(Object[] values, int start, int end) {
+        for (int i = start; i <= end; i++) {
             int j = i -1;
-            int key = values[i];
-            while (j >= 0 && values[j] > key) {
+            Object key = values[i];
+            while (j >= start && ((Comparable)values[j]).compareTo(key) > 0) {
                 values[j + 1] = values[j];
                 j--;
             }

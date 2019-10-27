@@ -1,6 +1,6 @@
 package sort;
 
-public class CountingSort implements Sort {
+public class CountingSort implements SimpleSort {
 
     @Override
     public String name() {

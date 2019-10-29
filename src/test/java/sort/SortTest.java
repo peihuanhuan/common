@@ -25,7 +25,6 @@ public class SortTest {
             originValueCount.compute(values.get(i), (k, v) -> (v == null) ? 1 : v + 1);
         }
 
-
         System.out.println("/***********************************************************/\n");
 
         runAndcheck(new BucketSort(8, new InsertionSort()), values, originValueCount);

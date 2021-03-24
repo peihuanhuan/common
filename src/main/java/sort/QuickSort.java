@@ -1,6 +1,6 @@
 package sort;
 
-import static sort.Common.exchangeValue;
+import static util.CommonUtils.exchangeValue;
 
 public class QuickSort<T extends Comparable<T>> implements Sort<T> {
     @Override

@@ -1,8 +1,8 @@
-package sort;
+package util;
 
 import java.util.List;
 
-public class Common {
+public class CommonUtils {
 
     public static void exchangeValue(Object[] values, int i, int j) {
         Object tmp = values[i];
@@ -10,7 +10,7 @@ public class Common {
         values[j] = tmp;
     }
 
-    public static <T>void exchangeValue(List<T> values, int i, int j) {
+    public static <T> void exchangeValue(List<T> values, int i, int j) {
         T tmp = values.get(i);
         values.set(i, values.get(j));
         values.set(j, tmp);

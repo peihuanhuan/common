@@ -4,7 +4,7 @@ package algorithm;
 import java.util.ArrayList;
 import java.util.List;
 
-import static sort.Common.exchangeValue;
+import static util.CommonUtils.exchangeValue;
 
 /**
  * 顺序统计量 查找第 i 小的元素

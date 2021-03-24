@@ -1,6 +1,6 @@
 package sort;
 
-public interface SimpleSort<T extends Comparable<T>> {
+public interface SimpleSort {
     String name();
 
     void sort(int[] values);

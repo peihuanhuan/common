@@ -1,6 +1,6 @@
 package sort;
 
-import static sort.Common.exchangeValue;
+import static util.CommonUtils.exchangeValue;
 
 public class HeapSort<T extends Comparable<T>> implements Sort<T> {
 

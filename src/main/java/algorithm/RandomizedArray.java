@@ -5,7 +5,7 @@ import util.CommonUtils;
 import java.util.List;
 
 /**
- * 随机化打乱一个数组
+ * 随机打乱一个数组
  */
 public class RandomizedArray {
 

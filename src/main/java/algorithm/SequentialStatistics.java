@@ -34,16 +34,16 @@ public class SequentialStatistics {
     }
 
     private static <T extends Comparable<T>> int partition(List<T> values, int start, int end) {
-        T privot = values.get(end);
+        T pivot = values.get(end);
         int i = start;
         for (int j = start; j < end; j++) {
-            if (values.get(j).compareTo(privot) < 0) {
+            if (values.get(j).compareTo(pivot) < 0) {
                 exchangeValue(values, i, j);
                 i++;
             }
         }
         values.set(end, values.get(i));
-        values.set(i, privot);
+        values.set(i, pivot);
         return i;
     }
 }

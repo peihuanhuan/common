@@ -5,9 +5,9 @@ import util.CommonUtils;
 import java.util.List;
 
 /**
- * 随机打乱一个数组
+ * 洗牌算法 随机打乱一个数组
  */
-public class RandomizedArray {
+public class KnuthShuffle {
 
     public static void randomizedArray(Object[] array) {
         int p = array.length;

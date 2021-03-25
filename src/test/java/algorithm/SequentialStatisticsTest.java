@@ -20,7 +20,7 @@ public class SequentialStatisticsTest {
         }
 
         for (int t = 0; t < 100; t++) {
-            RandomizedArray.randomizedArray(values);
+            KnuthShuffle.randomizedArray(values);
 
             for (int i = 1; i <= size; i++) {
                 Assert.assertEquals(sequentialStatistics(values, i), new Integer(i));

@@ -7,10 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static algorithm.RandomizedArray.randomizedArray;
-import static org.junit.Assert.*;
+import static algorithm.KnuthShuffle.randomizedArray;
 
-public class RandomizedArrayTest {
+public class KnuthShuffleTest {
 
     @Test
     public void randomizedArrayTest() {

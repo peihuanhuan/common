@@ -13,7 +13,7 @@ public class KnuthShuffle {
         int p = array.length;
         while (p > 0) {
             int index  = (int) Math.floor(Math.random() * p--);
-            CommonUtils.exchangeValue(array, index, p);
+            CommonUtils.swap(array, index, p);
         }
     }
 
@@ -21,7 +21,7 @@ public class KnuthShuffle {
         int p = array.size();
         while (p > 0) {
             int index  = (int) Math.floor(Math.random() * p--);
-            CommonUtils.exchangeValue(array, index, p);
+            CommonUtils.swap(array, index, p);
         }
     }
 }

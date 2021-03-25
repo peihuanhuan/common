@@ -1,6 +1,8 @@
 package sort;
 
-import static util.CommonUtils.exchangeValue;
+import util.CommonUtils;
+
+import static util.CommonUtils.swap;
 
 public class QuickSort<T extends Comparable<T>> implements Sort<T> {
     @Override
@@ -29,7 +31,7 @@ public class QuickSort<T extends Comparable<T>> implements Sort<T> {
         for (int j = start; j < end; j++) {
 
             if (((Comparable)values[j]).compareTo(privot) < 0) {
-                exchangeValue(values, i, j);
+                CommonUtils.swap(values, i, j);
                 i++;
             }
         }

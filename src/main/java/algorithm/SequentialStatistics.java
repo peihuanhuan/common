@@ -4,7 +4,7 @@ package algorithm;
 import java.util.ArrayList;
 import java.util.List;
 
-import static util.CommonUtils.exchangeValue;
+import static util.CommonUtils.swap;
 
 /**
  * 顺序统计量 查找第 i 小的元素
@@ -38,7 +38,7 @@ public class SequentialStatistics {
         int i = start;
         for (int j = start; j < end; j++) {
             if (values.get(j).compareTo(pivot) < 0) {
-                exchangeValue(values, i, j);
+                swap(values, i, j);
                 i++;
             }
         }

@@ -1,6 +1,8 @@
 package sort;
 
-import static util.CommonUtils.exchangeValue;
+import util.CommonUtils;
+
+import static util.CommonUtils.swap;
 
 public class HeapSort<T extends Comparable<T>> implements Sort<T> {
 
@@ -15,7 +17,7 @@ public class HeapSort<T extends Comparable<T>> implements Sort<T> {
         int length = values.length;
 
         while (length >= 2) {
-            exchangeValue(values, length - 1, 0);
+            CommonUtils.swap(values, length - 1, 0);
             length--;
 
             keepHeapify(values, length, 0);
@@ -44,7 +46,7 @@ public class HeapSort<T extends Comparable<T>> implements Sort<T> {
         }
 
         if (maxValueIndex != index) {
-            exchangeValue(values, index, maxValueIndex);
+            CommonUtils.swap(values, index, maxValueIndex);
             keepHeapify(values, length, maxValueIndex);
         }
     }
